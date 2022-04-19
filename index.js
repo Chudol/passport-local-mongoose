@@ -233,7 +233,7 @@ module.exports = function (schema, options) {
       })
       .then(() => this.findByUsername(user.get(options.usernameField)))
       .then((existingUser) => {
-        if (existingUser) {
+        if (existingUser && options.usernameUnique === true) {
           throw new errors.UserExistsError(options.errorMessages.UserExistsError);
         }
       })
